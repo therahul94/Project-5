@@ -172,17 +172,17 @@ const createCart = async (req, res) => {
 
                  if(removeProduct==0){
                      const productRemove= await cartModel.findOneAndUpdate({_id:cartId}, {$pull:{items:{productId:productId}}, totalPrice: isPresentCartId.totalPrice - changePrice, totalItems:isPresentCartId.totalItems-1},{new:true})
-                   return  res.status(200).send({status:true, msg:"Remove product Successfully",data:productRemove}).select({__v:0})
+                   return  res.status(200).send({status:true, msg:"Remove product Successfully",data:productRemove})
                  }
 
                  if(removeProduct==1){
                      if(cart[i].quantity==1 && removeProduct==1 ){
-                         const priceUpdate=await cartModel.findOneAndUpdate({_id:cartId},{$pull:{items:{productId}},totalPrice:isPresentCartId.totalPrice-changePrice, totalItems:isPresentCartId.totalItems-1},{new:true})
-                     return res.status(200).send({status:true,msg:"Remove product and price update successfully",data:priceUpdate}).select({__v:0})
+                        const priceUpdate=await cartModel.findOneAndUpdate({_id:cartId},{$pull:{items:{productId}},totalPrice:isPresentCartId.totalPrice-changePrice, totalItems:isPresentCartId.totalItems-1},{new:true})
+                        return res.status(200).send({status:true,msg:"Remove product and price update successfully",data:priceUpdate})
                      }
                      cart[i].quantity=cart[i].quantity-1;
                      const cartUpdated= await cartModel.findByIdAndUpdate({_id:cartId},{items:cart,totalPrice:isPresentCartId.totalPrice -isPresentProductId.price},{new:true})
-                   return  res.status(200).send({status:true,msg:"One item remove successfully",data:cartUpdated}).select({__v:0}) 
+                   return  res.status(200).send({status:true,msg:"One item remove successfully",data:cartUpdated})
                  }
              }
          }

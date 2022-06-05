@@ -19,7 +19,7 @@ const createOrder = async function (req, res) {
             cancellable = cancellable.toLowerCase()
             const cancle = ["true", "false"].indexOf(cancellable)
             if (cancle == -1) {
-                return res.status(400).send({ status: false, message: "Status can only be true/false " })
+                return res.status(400).send({ status: false, message: "cancellable can only be true/false " })
             }
         }
         if (!mongoose.isValidObjectId(req.params.userId)) {

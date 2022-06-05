@@ -225,6 +225,7 @@ const login = async function (req, res) {
   }
 };
 
+
 const getUserDetails = async function (req, res) {
   const userId = req.params.userId;
   if (!validator.isValid(userId)) {
